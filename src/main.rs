@@ -92,7 +92,7 @@ fn main() {
     println!("Flush decoder and read last bits");
     audio_decoder.flush();
 
-    while let Ok(Some(_)) = resampler.flush(&mut resampled_audio) {
+    while let Some(_) = resampler.flush(&mut resampled_audio).unwrap() {
         data.append(&mut get_samples(&resampled_audio));
     }
 
