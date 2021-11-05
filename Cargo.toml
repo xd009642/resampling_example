@@ -1,0 +1,10 @@
+[package]
+name = "resampling_example"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ffmpeg = { git = "http://github.com/meh/rust-ffmpeg", rev="ede9423"}
+ffmpeg-sys = "4.3.3"
+hound = "3.4.0"
+libc = "0.2.93"
