@@ -68,6 +68,10 @@ fn main() {
                 // go from the data frame to an audio packet. TODO the unwrap :cry:
                 resampler.run(&audio, &mut resampled_audio).unwrap();
                 data.append(&mut get_samples(&resampled_audio));
+                while resampler.delay().is_some() {
+                    resampler.flush(&mut resampled_audio).unwrap();
+                    data.append(&mut get_samples(&resampled_audio));
+                }
             }
             Err(e) if e.as_raw_error() == libc::EOF || e.as_raw_error() >= 0 => {
                 // Only negative errors are real errors...
